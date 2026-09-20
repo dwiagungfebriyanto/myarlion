@@ -1,0 +1,50 @@
+name: myarlion
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
+    container_name: myarlion_app
+    working_dir: /var/www
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    volumes:
+      - ./:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/myarlion.ini:ro
+    networks:
+      - myarlion_net
+
+  nginx:
+    image: nginx:alpine
+    container_name: myarlion_nginx
+    depends_on:
+      - app
+    ports:
+      - "8082:80"     # Akses app di http://localhost:8080
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - myarlion_net
+
+  node:
+    image: node:18-alpine
+    container_name: myarlion_node
+    working_dir: /var/www
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    volumes:
+      - ./:/var/www
+    # Biarkan hidup untuk siap pakai npm run dev
+    command: sh -c "tail -f /dev/null"
+    # (Opsional untuk Vite HMR)
+    # ports:
+    #   - "5173:5173"
+    networks:
+      - myarlion_net
+
+networks:
+  myarlion_net:
+    driver: bridge
