@@ -37,6 +37,10 @@ class ProductDataTable extends DataTable
             ->editColumn('updated_at', function (Product $row) {
                 return $row->updated_at->format('d-m-Y H:i:s');
             })
+            // New column handler
+            ->addColumn('category_label', function (Product $row) {
+                return 'General';
+            })
             ->addColumn('action', 'pages.product.list.components.action-button')
             ->setRowId('id');
     }
@@ -82,6 +86,11 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            // New column
+            Column::computed('category_label')
+                ->title('Category')
+                ->addClass('align-middle'),
+
             Column::make('sku', 'sku')->title('SKU')->addClass('align-middle'),
             Column::make('product_type_name', 'product_types.product_type_name')->title('Product')->addClass('align-middle'),
             Column::make('supplier_name', 'suppliers.supplier_name')->title('Supplier')->addClass('align-middle'),
