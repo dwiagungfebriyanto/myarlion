@@ -4,7 +4,7 @@
         data-url="{{ route('product.list.show', $id) }}"><i class="fas fa-eye"></i></button>
 
     @can('edit product')
-        <button class="btn btn-warning btn-sm waves-effect waves-light mr-2 btn-edit" type="button" data-toggle="modal"
+        <button class="btn btn-warning btn-sm waves-effect waves-light mr-2 btn-edit-product" type="button" data-toggle="modal"
         data-id="{{ $id }}" data-jenis="edit" data-target="#editModal"
         data-url="{{ route('product.list.edit', $id) }}"><i class="fas fa-pen-alt"></i></button>
     @endcan
@@ -13,7 +13,7 @@
 <script>
     $(document).ready(function() {
 
-        $('.btn-edit').off('click').on('click', function(e) {
+        $('.btn-edit-product').off('click').on('click', function(e) {
             let data = $(this).data();
 
             $.ajax({
