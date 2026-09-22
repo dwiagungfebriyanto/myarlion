@@ -129,7 +129,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary waves-effect waves-light" id="formSubmit">Add</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light" id="btnAddProduct">Add</button>
         </div>
     </form>
 </div><!-- /.modal-content -->
