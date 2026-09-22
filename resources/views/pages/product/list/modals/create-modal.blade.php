@@ -119,6 +119,19 @@
                     </div>
                 </div>
             </div>
+            
+            {{-- New field --}}
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-12">
+                            <label for="">Color<span class="text-danger">*</span></label>
+                            <br>
+                            <input type="text" class="form-control" required name="color" id="color">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-12">

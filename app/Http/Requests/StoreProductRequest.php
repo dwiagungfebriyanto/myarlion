@@ -32,6 +32,8 @@ class StoreProductRequest extends FormRequest
             'note'             => 'required|string',
             'harga_rata_rata'  => 'required|numeric',
             'harga_tertinggi'  => 'required|numeric',
+            // New rules
+            'color'            => 'required|string',
         ];
     }
 }
