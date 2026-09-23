@@ -122,8 +122,21 @@
 
             <div class="form-group">
                 <div class="col-12">
-                    <label for="note">Note</label>
-                    <textarea id="textarea" name="note" class="form-control" maxlength="225" rows="3" placeholder="Add note...">{{ old('note') }}</textarea>
+                    {{-- <label for="note">Note</label> --}}
+                    {{-- <textarea id="textarea" name="note" class="form-control" maxlength="225" rows="3" placeholder="Add note...">{{ old('note') }}</textarea> --}}
+                    {{-- New toggle --}}
+                    <button type="button" class="btn btn-link p-0 mb-2" id="btnToggleNote">+ Add Note</button>
+                    <div id="noteWrapper" style="display: none;">
+                        <textarea id="textarea" name="note" class="form-control" maxlength="225" rows="3" placeholder="Add note...">{{ old('note') }}</textarea>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#btnToggleNote').on('click', function () {
+                                $('#noteWrapper').slideToggle();
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>
