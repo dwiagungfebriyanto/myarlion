@@ -41,6 +41,12 @@ class ProductDataTable extends DataTable
             ->addColumn('category_label', function (Product $row) {
                 return 'General';
             })
+            ->addColumn('color_label', function (Product $row) {
+                return 'Brown';
+            })
+            ->addColumn('dimension_label', function (Product $row) {
+                return '1x1x1';
+            })
             ->addColumn('action', 'pages.product.list.components.action-button')
             ->setRowId('id');
     }
@@ -86,12 +92,17 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('sku', 'sku')->title('SKU')->addClass('align-middle'),
             // New column
             Column::computed('category_label')
                 ->title('Category')
                 ->addClass('align-middle'),
-
-            Column::make('sku', 'sku')->title('SKU')->addClass('align-middle'),
+            Column::computed('color_label')
+                ->title('Color')
+                ->addClass('align-middle'),
+            Column::computed('dimension_label')
+                ->title('Dimension')
+                ->addClass('align-middle'),
             Column::make('product_type_name', 'product_types.product_type_name')->title('Product')->addClass('align-middle'),
             Column::make('supplier_name', 'suppliers.supplier_name')->title('Supplier')->addClass('align-middle'),
             Column::make('brand_name', 'brands.brand_name')->title('Brand')->addClass('align-middle'),
